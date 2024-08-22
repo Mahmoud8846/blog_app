@@ -16,7 +16,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "jwt", "~> 2.2"
 
 # Background Jobs
-gem "sidekiq", "~> 6.0"
+gem "sidekiq", "~> 7.3"
 gem "redis", "~> 4.0"
 
 group :development, :test do
