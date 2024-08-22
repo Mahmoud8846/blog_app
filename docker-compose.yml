@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Mm222222222
+      POSTGRES_DB: blog_app_development
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - blog_network
+
+  redis:
+    image: redis:7.0
+    networks:
+      - blog_network
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:Mm222222222@db:5432/blog_app_development
+      DB_USERNAME: postgres
+      DB_PASSWORD: Mm222222222
+    networks:
+      - blog_network
+
+volumes:
+  db_data:
+
+networks:
+  blog_network:
