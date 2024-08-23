@@ -84,7 +84,7 @@
         <%= form.email_field :email, placeholder: "Email", required: true, class: "form-control" %>
         <%= form.password_field :password, placeholder: "Password", required: true, class: "form-control" %>
         <%= form.password_field :password_confirmation, placeholder: "Confirm Password", required: true, class: "form-control" %>
-        <%= form.file_field :image, accept: "image/*", onchange: "previewImage(event)", class: "form-control" %>
+        <%= form.file_field :image, accept: "image/*", onchange: "previewImage(event)",required: true, class: "form-control" %>
         <img id="image-preview" alt="Image Preview">
         <%= form.submit "Sign Up", class: "btn btn-success" %>
     <% end %>
