@@ -2,13 +2,16 @@ class HomeController < ApplicationController
     before_action :authenticate_user!
   
     def homepage
-      # Fetch all posts to display on the homepage
-    #   @posts = Post.all.order(created_at: :desc)
+       @post = Post.new
+       @posts = Post.all.order(created_at: :desc)
+       @editing_post_id = params[:editing_post_id].to_i if params[:editing_post_id].present?
+       @editing_comment_id = params[:editing_comment_id].to_i if params[:editing_comment_id]
+
     end
   
     def profile
-      # Fetch only the posts of the currently logged-in user
-    #   @posts = current_user.posts.order(created_at: :desc)
+      @post = Post.new
+      @posts = current_user.posts.order(created_at: :desc)
     end
   
     private

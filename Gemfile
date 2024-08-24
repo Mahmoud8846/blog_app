@@ -11,12 +11,14 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 gem 'carrierwave', '~> 3.0.7'
+gem 'rack'
 # Authentication
 gem "bcrypt", "~> 3.1.7"
 gem "jwt", "~> 2.2"
 
 # Background Jobs
-gem "sidekiq", "~> 6.0"
+gem "sidekiq-scheduler"
+gem "sidekiq", "~> 7.0"
 gem "redis", "~> 4.0"
 
 group :development, :test do
