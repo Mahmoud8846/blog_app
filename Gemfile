@@ -19,7 +19,7 @@ gem "jwt", "~> 2.2"
 # Background Jobs
 gem "sidekiq-scheduler"
 gem "sidekiq", "~> 7.0"
-gem "redis", "~> 4.0"
+gem "redis", "~> 5.3"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
