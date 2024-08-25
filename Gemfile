@@ -17,19 +17,17 @@ gem "bcrypt", "~> 3.1.7"
 gem "jwt", "~> 2.2"
 
 # Background Jobs
-gem "sidekiq-scheduler"
-gem "sidekiq", "~> 7.0"
-gem "redis", "~> 4.0"
-
+gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.6'
+gem 'sidekiq', '~> 7.3', '>= 7.3.1'
+gem 'redis', '~> 5.3'
+gem 'redis-client', '~> 0.22.0'
+gem 'sidekiq-cron'
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
 
-  # Testing
-  gem "rspec-rails", "~> 5.0"
-  gem "factory_bot_rails"
-  gem "faker"
+  
 end
 
 group :development do

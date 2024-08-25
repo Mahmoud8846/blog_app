@@ -106,18 +106,10 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
-    factory_bot (6.4.6)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.4.3)
-      factory_bot (~> 6.4)
-      railties (>= 5.0.0)
-    faker (3.4.2)
-      i18n (>= 1.8.11, < 2)
     ffi (1.17.0-x64-mingw-ucrt)
     ffi (1.17.0-x86_64-linux-gnu)
     fugit (1.11.1)
@@ -228,7 +220,8 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    redis (4.8.1)
+    redis (5.3.0)
+      redis-client (>= 0.22.0)
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
@@ -236,23 +229,6 @@ GEM
       io-console (~> 0.5)
     rexml (3.3.6)
       strscan
-    rspec-core (3.13.0)
-      rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.2)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-rails (5.1.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
-      rspec-core (~> 3.10)
-      rspec-expectations (~> 3.10)
-      rspec-mocks (~> 3.10)
-      rspec-support (~> 3.10)
-    rspec-support (3.13.1)
     rubocop (1.65.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -302,6 +278,10 @@ GEM
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
+    sidekiq-cron (1.12.0)
+      fugit (~> 1.8)
+      globalid (>= 1.0.1)
+      sidekiq (>= 6)
     sidekiq-scheduler (5.0.6)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
@@ -356,8 +336,6 @@ DEPENDENCIES
   capybara
   carrierwave (~> 3.0.7)
   debug
-  factory_bot_rails
-  faker
   importmap-rails
   jbuilder
   jwt (~> 2.2)
@@ -365,12 +343,13 @@ DEPENDENCIES
   puma (>= 5.0)
   rack
   rails (~> 7.2.0)
-  redis (~> 4.0)
-  rspec-rails (~> 5.0)
+  redis (~> 5.3)
+  redis-client (~> 0.22.0)
   rubocop-rails-omakase
   selenium-webdriver
-  sidekiq (~> 7.0)
-  sidekiq-scheduler
+  sidekiq (~> 7.3, >= 7.3.1)
+  sidekiq-cron
+  sidekiq-scheduler (~> 5.0, >= 5.0.6)
   sprockets-rails
   stimulus-rails
   turbo-rails

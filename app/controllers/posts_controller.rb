@@ -19,17 +19,24 @@ class PostsController < ApplicationController
         @posts = current_user.posts.order(created_at: :desc)
       end
 
-    def create
-      @post = current_user.posts.build(post_params)
-      if @post.save
-        process_tags(@post)
-        redirect_to home_homepage_path, notice: 'Post was successfully created.'
-      else
-        @posts = Post.all.order(created_at: :desc)
-        render 'home/homepage'
+      def create
+        @post = current_user.posts.build(post_params)
+        if @post.save
+          process_tags(@post)
+          respond_to do |format|
+            format.html { redirect_to home_homepage_path, notice: 'Post was successfully created.' }
+            format.json { render json: { message: 'Post was successfully created.', post: @post }, status: :created }
+          end
+        else
+          respond_to do |format|
+            format.html do
+              @posts = Post.all.order(created_at: :desc)
+              render 'home/homepage'
+            end
+            format.json { render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity }
+          end
+        end
       end
-    end
-  
     def edit
     end
 
@@ -52,38 +59,55 @@ class PostsController < ApplicationController
   end
 end
 
-    def update
-      if @post.update(post_params)
-        process_tags(@post)
-        redirect_to home_homepage_path, notice: 'Post was successfully updated.'
-      else
-        render :edit
-      end
+def update
+  if @post.update(post_params)
+    process_tags(@post)
+    respond_to do |format|
+      format.html { redirect_to home_homepage_path, notice: 'Post was successfully updated.' }
+      format.json { render json: { message: 'Post was successfully updated.', post: @post }, status: :ok }
     end
+  else
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity }
+    end
+  end
+end
   
-    def destroy
-      @post.destroy
-      redirect_to home_homepage_path, notice: 'Post was successfully deleted.'
-    end
+def destroy
+  @post.destroy
+  respond_to do |format|
+    format.html { redirect_to home_homepage_path, notice: 'Post was successfully deleted.' }
+    format.json { render json: { message: 'Post was successfully deleted.' }, status: :ok }
+  end
+end
   
     private
     
     def authenticate_user!
-        unless current_user
-          redirect_to login_path, alert: 'You need to log in to access this page.'
+      unless current_user
+        respond_to do |format|
+          format.html { redirect_to login_path, alert: 'You need to log in to access this page.' }
+          format.json { render json: { error: 'You need to log in to access this page.' }, status: :unauthorized }
         end
       end
+    end
   
     def set_post
       @post = Post.find(params[:id])
     end
   
     def post_params
-      params.require(:post).permit(:title, :body, tag_ids: [])
+      params.require(:post).permit(:title, :body, tag_list: [])
     end
   
     def authorize_user!
-      redirect_to posts_path, alert: 'You are not authorized to perform this action.' unless @post.user == current_user
+      unless @post.user == current_user
+        respond_to do |format|
+          format.html { redirect_to posts_path, alert: 'You are not authorized to perform this action.' }
+          format.json { render json: { error: 'You are not authorized to perform this action.' }, status: :forbidden }
+        end
+      end
     end
   end
   

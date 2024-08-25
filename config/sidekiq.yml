@@ -1,7 +1,11 @@
 :concurrency: 5
 :queues:
   - default
+:redis:
+  :url: 'redis://172.18.0.2:6379/0'
+
 :schedule:
   delete_old_posts:
-    cron: "*/1 * * * *" # Runs every minute
+    cron: "*/1 * * * *"   # Every minute
     class: "DeleteOldPostsJob"
+    queue: default

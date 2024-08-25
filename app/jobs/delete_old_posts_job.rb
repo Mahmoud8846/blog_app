@@ -3,6 +3,6 @@ class DeleteOldPostsJob < ApplicationJob
 
   def perform(*args)
     # Find and delete posts older than 24 hours
-    Post.where("created_at < ?", 6.hours.ago).destroy_all
+    Post.where("created_at < ?", 24.hours.ago).destroy_all
   end
 end

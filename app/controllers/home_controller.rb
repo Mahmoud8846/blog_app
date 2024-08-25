@@ -8,7 +8,8 @@ class HomeController < ApplicationController
        @editing_comment_id = params[:editing_comment_id].to_i if params[:editing_comment_id]
 
     end
-  
+    def login
+    end
     def profile
       @post = Post.new
       @posts = current_user.posts.order(created_at: :desc)
