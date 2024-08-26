@@ -2,7 +2,7 @@
 
  Blog Application API Documentation
 
-This is the API documentation for the Blog Application. The application allows users to sign up, log in, create, update, and delete posts and comments.
+This is the API documentation for the Blog Application. The application allows users to sign up, log in, create, update, and delete posts and comments,You can fine a ERD also attached in the root directory with name Blog App ERD.
 
 I did a Web view for the whole application but both api requests and web view works ,you can test with whatever you want ,links for web pages are in the far bottom
 
