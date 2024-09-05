@@ -137,7 +137,7 @@ GEM
     jwt (2.8.2)
       base64
     language_server-protocol (3.17.0.3)
-    logger (1.6.0)
+    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -272,7 +272,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.1)
+    sidekiq (7.3.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       logger
@@ -347,7 +347,7 @@ DEPENDENCIES
   redis-client (~> 0.22.0)
   rubocop-rails-omakase
   selenium-webdriver
-  sidekiq (~> 7.3, >= 7.3.1)
+  sidekiq (~> 7.3)
   sidekiq-cron
   sidekiq-scheduler (~> 5.0, >= 5.0.6)
   sprockets-rails
