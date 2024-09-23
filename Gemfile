@@ -14,7 +14,7 @@ gem 'carrierwave', '~> 3.0.7'
 gem 'rack'
 # Authentication
 gem "bcrypt", "~> 3.1.7"
-gem "jwt", "~> 2.2"
+gem "jwt", "~> 2.9"
 
 # Background Jobs
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.6'
